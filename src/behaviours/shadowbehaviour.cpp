@@ -593,13 +593,13 @@ void ShadowBehaviour::applyPosition(SimpleCB aApplyDoneCB)
     MLMicroSeconds stopIn = 0;
     runIntoEnd = false;
     // full up or down always schedule full way to synchronize
-    if (targetPosition>=100) {
+    if (targetPosition>=100 && referencePosition<100) {
       // fully up, always do full cycle to synchronize position
       dist = 120; // 20% extra to fully run into end switch
       runIntoEnd = true; // if we have end switches, let them stop the movement
       if (referencePosition<=0) updateMoveTimeAtEndReached = true; // full range movement, use it to update movement time
     }
-    else if (targetPosition<=0) {
+    else if (targetPosition<=0 && referencePosition>0) {
       // fully down, always do full cycle to synchronize position
       dist = -120; // 20% extra to fully run into end switch
       runIntoEnd = true; // if we have end switches, let them stop the movement
